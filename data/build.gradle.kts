@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.petapp.data"
     compileSdk = ConfigurationData.compileSdk
+    buildToolsVersion = ConfigurationData.buildToolsVersion
 
     defaultConfig {
         minSdk = ConfigurationData.minSdk

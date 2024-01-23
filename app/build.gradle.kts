@@ -1,11 +1,14 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.petapp"
     compileSdk = ConfigurationData.compileSdk
+    buildToolsVersion = ConfigurationData.buildToolsVersion
 
     defaultConfig {
         applicationId = ConfigurationData.applicationId
@@ -38,7 +41,15 @@ dependencies {
     implementation(Libs.AndroidX.AppCompat.appcompat)
     implementation(Libs.Material.meterial)
     implementation(Libs.AndroidX.ConstraintLayout.constraintLayout)
+    implementation(Libs.Hilt.hilt)
+    implementation(Libs.Navigation.navigationFragment)
+    kapt(Libs.Hilt.hiltCompiler)
     testImplementation(Libs.JUnit.junit)
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
