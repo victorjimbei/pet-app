@@ -1,20 +1,17 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    namespace = "com.petapp"
+    namespace = "com.petapp.data"
     compileSdk = ConfigurationData.compileSdk
 
     defaultConfig {
-        applicationId = ConfigurationData.applicationId
         minSdk = ConfigurationData.minSdk
-        targetSdk = ConfigurationData.targetSdk
-        versionCode = ConfigurationData.versionCode
-        versionName = ConfigurationData.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -35,9 +32,6 @@ android {
 dependencies {
     implementation(project(":domain"))
     implementation(Libs.CoreCtx.coreKtx)
-    implementation(Libs.AndroidX.AppCompat.appcompat)
-    implementation(Libs.Material.meterial)
-    implementation(Libs.AndroidX.ConstraintLayout.constraintLayout)
     testImplementation(Libs.JUnit.junit)
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)
