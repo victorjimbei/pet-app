@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/petsFragment"
-        android:name="com.petapp.home.PetsFragment"
+        android:name="com.petapp.home.fragment.PetsFragment"
         android:label="PetsFragment"
         tools:layout="@layout/fragment_pets">
         <action

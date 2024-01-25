@@ -15,6 +15,16 @@ object Libs {
             private const val version = "2.1.4"
             const val constraintLayout = "androidx.constraintlayout:constraintlayout:$version"
         }
+
+        object ViewBinding {
+            private const val version = "8.2.1"
+            const val viewBinding = "androidx.databinding:viewbinding:$version"
+        }
+
+        object SwipeRefreshLayout {
+            private const val version = "1.1.0"
+            const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:$version"
+        }
     }
 
     object Material {
@@ -59,9 +69,21 @@ object Libs {
     }
 
     object Hilt {
-        const val version = "2.44"
+        const val version = "2.48"
         const val hilt = "com.google.dagger:hilt-android:$version"
         const val hiltCompiler = "com.google.dagger:hilt-compiler:$version"
+    }
+
+    object RX {
+        const val rxJava3 = "io.reactivex.rxjava3:rxjava:3.1.8"
+        const val rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.2"
+        const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:3.0.1"
+
+    }
+
+    object Security {
+        private const val version = "1.1.0-alpha06"
+        const val crypto = "androidx.security:security-crypto-ktx:$version"
     }
 
     // Unit tests dependencies

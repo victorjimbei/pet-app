@@ -6,4 +6,5 @@ object ConfigurationData {
     const val targetSdk= 34
     const val versionCode = 1
     const val versionName = "1.0"
+    const val cMakeVersion = "3.22.1"
 }
