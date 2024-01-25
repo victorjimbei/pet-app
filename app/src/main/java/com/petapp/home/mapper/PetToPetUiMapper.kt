@@ -7,6 +7,7 @@ class PetToPetUiMapper : Function1<List<Pet>, List<PetUi>> {
     override fun invoke(pets: List<Pet>): List<PetUi> {
         return pets.map {
             PetUi(
+                id = it.id,
                 name = it.name,
                 description = it.description,
                 imageUrl = if (it.photos.isNotEmpty()) {

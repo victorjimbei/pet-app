@@ -65,7 +65,6 @@
             android:padding="24dp"
             android:text="@{viewModel.uiState.errorMessage}"
             android:textAppearance="?attr/textAppearanceBody1"
-            android:textColor="@android:color/primary_text_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="@string/empty_message" />
 

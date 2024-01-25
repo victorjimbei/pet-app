@@ -9,7 +9,7 @@ import dagger.hilt.android.components.ActivityComponent
 
 @Module
 @InstallIn(ActivityComponent::class)
-abstract class PetsDomainModule {
+abstract class PetsDomainBindingsModule {
     @Binds
     abstract fun bindPetsUseCase(
         petsUseCaseImpl: GetPetsUseCaseImpl

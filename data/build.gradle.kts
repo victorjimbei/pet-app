@@ -1,8 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
-    id ("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -12,6 +12,12 @@ android {
 
     defaultConfig {
         minSdk = ConfigurationData.minSdk
+
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+            arg("room.incremental", "true")
+            arg("room.expandProjection", "true")
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -42,20 +48,18 @@ dependencies {
     implementation(project(":domain"))
     implementation(Libs.CoreCtx.coreKtx)
     implementation(Libs.Hilt.hilt)
-    kapt(Libs.Hilt.hiltCompiler)
+    ksp(Libs.Hilt.hiltCompiler)
     implementation(Libs.Retrofit.retrofit)
     implementation(Libs.Retrofit.retrofitRx3)
     implementation(Libs.Retrofit.retrofitGson)
     implementation(Libs.OkHttp.okHttp)
     implementation(Libs.OkHttp.okHttpLogging)
     implementation(Libs.Security.crypto)
+    implementation(Libs.Room.room)
+    implementation(Libs.Room.roomRx)
+    ksp(Libs.Room.roomCompiler)
 
     testImplementation(Libs.JUnit.junit)
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }

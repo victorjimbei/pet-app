@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 
@@ -36,5 +36,5 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Libs.RX.rxJava3)
     implementation(Libs.Hilt.hilt)
-    kapt(Libs.Hilt.hiltCompiler)
+    ksp(Libs.Hilt.hiltCompiler)
 }

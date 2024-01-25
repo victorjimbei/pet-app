@@ -86,6 +86,16 @@ object Libs {
         const val crypto = "androidx.security:security-crypto-ktx:$version"
     }
 
+    object Flipper {
+        private const val version = "0.245.0"
+        const val flipper = "com.facebook.flipper:flipper:$version"
+    }
+
+    object SoLoader {
+        private const val version = "0.10.5"
+        const val soLoader = "com.facebook.soloader:soloader:$version"
+    }
+
     // Unit tests dependencies
     object JUnit {
         private const val version = "4.13.2"

@@ -28,6 +28,7 @@ data class AnimalDto(
     val photos: List<PhotoDto> = emptyList(),
     val videos: List<VideoDto> = emptyList(),
     val status: String?,
+    val distance: Int?,
     @SerializedName("published_at")
     val publishedAt: String?,
     val contact: ContactDto?,

@@ -59,9 +59,7 @@ dependencies {
     testImplementation(Libs.JUnit.junit)
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)
-}
 
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
+    debugImplementation(Libs.Flipper.flipper)
+    debugImplementation(Libs.SoLoader.soLoader)
 }

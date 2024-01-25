@@ -29,8 +29,15 @@ class PetsAuthLocalDataStore @Inject constructor(context: Context) {
             sharedPreferences.edit { putString(AUTH_TOKEN_KEY, token) }
         }
 
+    var tokenExpireTime: Long
+        get() = sharedPreferences.getLong(AUTH_TOKEN_EXPIRE_TIME, 0)
+        set(expireTime) {
+            sharedPreferences.edit {putLong(AUTH_TOKEN_EXPIRE_TIME, expireTime)}
+        }
+
+
     companion object {
         private const val AUTH_TOKEN_KEY = "auth_token_key"
+        private const val AUTH_TOKEN_EXPIRE_TIME = "auth_token"
     }
-
 }

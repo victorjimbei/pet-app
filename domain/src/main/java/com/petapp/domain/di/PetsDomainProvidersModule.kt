@@ -9,7 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ActivityComponent::class)
-object AppModule {
+object PetsDomainProvidersModule {
     @Provides
     fun provideContext(
         @ApplicationContext context: Context,

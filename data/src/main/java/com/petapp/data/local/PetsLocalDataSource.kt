@@ -1,6 +1,34 @@
 package com.petapp.data.local
 
+import com.petapp.data.local.dao.PetsDao
+import com.petapp.data.local.mapper.PetToPetEntityMapper
+import com.petapp.domain.pets.model.Pets
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class PetsLocalDataSource @Inject constructor() {
+private const val FIRST_PAGE = 1
+
+class PetsLocalDataSource @Inject constructor(val petsDao: PetsDao) {
+
+    // TODO: Consider use cases:
+    //  1. if user refreshes the initial page
+    //  2. if user loads next page
+    fun savePets(pets: Pets): Completable {
+        return removeOutdatedCache(pets)
+            .andThen(Observable.fromIterable(pets.pets))
+            .map(PetToPetEntityMapper())
+            .flatMapCompletable { petsDao.setPet(it) }
+            .subscribeOn(Schedulers.io())
+    }
+
+    private fun removeOutdatedCache(pets: Pets): Completable {
+        val removePetsCompletable = if (pets.pagination?.currentPage == FIRST_PAGE) {
+            petsDao.deleteAllPets()
+        } else {
+            Completable.complete()
+        }
+        return removePetsCompletable
+    }
 }
