@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Pet App"
 include(":app")
- 
+include(":data")
+include(":domain")

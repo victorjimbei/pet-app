@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.petapp.R" />
+
+        <variable
+            name="petUi"
+            type="com.petapp.home.model.PetUi" />
+
+        <variable
+            name="clickHandler"
+            type="com.petapp.home.listener.OnPetClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> clickHandler.onPetClicked(petUi)}"
+        app:cardBackgroundColor="@color/light_gray"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/pet_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:petImageUrl="@{petUi.imageUrl}"
+                app:placeHolder="@{R.drawable.cats_and_dogs}"
+                tools:src="@drawable/cats_and_dogs" />
+
+            <TextView
+                android:id="@+id/pet_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{petUi.name}"
+                android:textAppearance="?attr/textAppearanceListItem"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pet_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Chartreaus Cat" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="2"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="16dp"
+                android:text="@{petUi.description}"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pet_image"
+                app:layout_constraintTop_toBottomOf="@+id/pet_name"
+                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Pet App</string>
+    <string name="empty_message">Couldn\'t find any pets. \nPlease check your network connection and try again.</string>
+    <string name="welcome_message">Hi pet lover, \nToday is a good day to find you a new friend!</string>
+    <string name="content_description_back">Back</string>
+    <string name="content_description_pets_main_image">Pets main image</string>
+    <string name="failed_to_load_pet_details">We cound\'t find more details about this pet.</string>
 </resources>

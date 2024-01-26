@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.petapp.home.model.PetsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimaryContainer">
+
+        <TextView
+            android:id="@+id/tv_title_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="@string/welcome_message"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textStyle="italic|bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_empty_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_connection"
+            android:visibility="@{viewModel.uiState.emptyPlaceholderVisibility}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_home" />
+
+        <TextView
+            android:id="@+id/tv_empty_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="68dp"
+            android:gravity="center"
+            android:padding="24dp"
+            android:switchTextAppearance="?attr/textAppearanceBody1"
+            android:text="@{viewModel.uiState.errorMessage}"
+            android:textAppearance="?attr/textAppearanceBody1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@string/empty_message" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_home"
+            app:onRefreshListener="@{() -> viewModel.onSwipeToRefresh()}"
+            app:refreshing="@{viewModel.uiState.isLoading}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                app:clickHandler="@{viewModel}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:pets="@{viewModel.uiState.pets}"
+                tools:listitem="@layout/pet_item_view" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

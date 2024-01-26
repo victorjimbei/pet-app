@@ -1,18 +1,27 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
     namespace = "com.petapp"
-    compileSdk = 34
+    compileSdk = ConfigurationData.compileSdk
+    buildToolsVersion = ConfigurationData.buildToolsVersion
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 
     defaultConfig {
-        applicationId = "com.petapp"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = ConfigurationData.applicationId
+        minSdk = ConfigurationData.minSdk
+        targetSdk = ConfigurationData.targetSdk
+        versionCode = ConfigurationData.versionCode
+        versionName = ConfigurationData.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,12 +42,28 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(Libs.CoreCtx.coreKtx)
+    implementation(Libs.AndroidX.AppCompat.appcompat)
+    implementation(Libs.Material.meterial)
+    implementation(Libs.AndroidX.ConstraintLayout.constraintLayout)
+    implementation(Libs.Hilt.hilt)
+    kapt(Libs.Hilt.hiltCompiler)
+    implementation(Libs.AndroidX.ViewBinding.viewBinding)
+    implementation(Libs.AndroidX.Navigation.navigationFragment)
+    implementation(Libs.RX.rxAndroid)
+    implementation(Libs.RX.rxKotlin)
+    implementation(Libs.Glide.glide)
+    implementation(Libs.Glide.glideOkHttp)
+    implementation(Libs.OkHttp.okHttp)
+    implementation(Libs.AndroidX.SwipeRefreshLayout.swipeRefreshLayout)
+    implementation(Libs.AndroidX.SavedState.savedState)
+    implementation(Libs.AndroidX.SplashScreen.splashScreen)
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(Libs.JUnitExt.junitExt)
+    androidTestImplementation(Libs.Espresso.espresso)
+
+    debugImplementation(Libs.Flipper.flipper)
+    debugImplementation(Libs.SoLoader.soLoader)
 }
