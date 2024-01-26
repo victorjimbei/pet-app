@@ -4,5 +4,5 @@ import com.petapp.domain.pets.model.Pets
 import io.reactivex.rxjava3.core.Observable
 
 interface GetPetsUseCase {
-    fun getPets(): Observable<Pets>
+    fun getPets(page: Int): Observable<Pets>
 }

@@ -8,7 +8,7 @@ import androidx.security.crypto.MasterKey
 import javax.inject.Inject
 
 
-class PetsAuthLocalDataStore @Inject constructor(context: Context) {
+class PetsAuthLocalDataSource @Inject constructor(context: Context) {
     private val masterKey: MasterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
@@ -23,18 +23,15 @@ class PetsAuthLocalDataStore @Inject constructor(context: Context) {
         )
     }
 
-    var accessToken: String?
-        get() = sharedPreferences.getString(AUTH_TOKEN_KEY, null)
-        set(token) {
-            sharedPreferences.edit { putString(AUTH_TOKEN_KEY, token) }
-        }
+    fun getToken(): String? = sharedPreferences.getString(AUTH_TOKEN_KEY, null)
+    fun setToken(token: String) {
+        sharedPreferences.edit { putString(AUTH_TOKEN_KEY, token) }
+    }
 
-    var tokenExpireTime: Long
-        get() = sharedPreferences.getLong(AUTH_TOKEN_EXPIRE_TIME, 0)
-        set(expireTime) {
-            sharedPreferences.edit {putLong(AUTH_TOKEN_EXPIRE_TIME, expireTime)}
-        }
-
+    fun getExpireTime(): Long = sharedPreferences.getLong(AUTH_TOKEN_EXPIRE_TIME, 0)
+    fun setExpireTime(expireTime: Long) {
+        sharedPreferences.edit { putLong(AUTH_TOKEN_EXPIRE_TIME, expireTime) }
+    }
 
     companion object {
         private const val AUTH_TOKEN_KEY = "auth_token_key"

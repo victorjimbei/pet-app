@@ -37,6 +37,7 @@ object Libs {
             private const val version = "2.7.6"
             const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
         }
+
         object Security {
             private const val version = "1.1.0-alpha06"
             const val crypto = "androidx.security:security-crypto-ktx:$version"
@@ -95,10 +96,10 @@ object Libs {
     }
 
     // Unit tests dependencies
-    object JUnit {
-        private const val version = "4.13.2"
-        const val junit = "junit:junit:$version"
-    }
+//    object JUnit {
+//        private const val version = "4.13.2"
+//        const val junit = "junit:junit:$version"
+//    }
 
     object JUnitExt {
         private const val version = "1.1.5"
@@ -108,5 +109,17 @@ object Libs {
     object Espresso {
         private const val version = "3.5.1"
         const val espresso = "androidx.test.espresso:espresso-core:$version"
+    }
+
+    object Mockk {
+        private const val version = "1.13.9"
+        const val mockk = "io.mockk:mockk:$version"
+    }
+
+    object Junit {
+        private const val version = "5.10.1"
+        const val junitApi = "org.junit.jupiter:junit-jupiter-api:$version"
+        const val junitParams = "org.junit.jupiter:junit-jupiter-params:$version"
+        const val junitEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
     }
 }

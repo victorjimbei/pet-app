@@ -1,8 +1,7 @@
 package com.petapp.data
 
-import android.util.Log
-import com.petapp.data.local.ApiKeysLocalStore
-import com.petapp.data.local.PetsAuthLocalDataStore
+import com.petapp.data.local.ApiKeysLocalSource
+import com.petapp.data.local.PetsAuthLocalDataSource
 import com.petapp.data.local.PetsLocalDataSource
 import com.petapp.data.remote.PetsRemoteDataSource
 import com.petapp.domain.pets.PetsRepo
@@ -17,13 +16,13 @@ import javax.inject.Inject
 class PetsRepoImpl @Inject constructor(
     val petsRemoteDataSource: PetsRemoteDataSource,
     val petsLocalDataSource: PetsLocalDataSource,
-    val apiKeysLocalStore: ApiKeysLocalStore,
-    val authLocalDataStore: PetsAuthLocalDataStore,
+    val apiKeysLocalSource: ApiKeysLocalSource,
+    val authLocalDataSource: PetsAuthLocalDataSource,
 ) : PetsRepo {
-    override fun getPets(): Observable<Pets> {
-        return fetchRemotePets(1)
-            .flatMap { savePets(it) }
-            .startWith(petsLocalDataSource.getAllPets())
+    override fun getPets(page: Int): Observable<Pets> {
+        return fetchRemotePets(page)
+            .flatMapObservable { savePets(it) }
+            .mergeWith(petsLocalDataSource.getAllPets())
             .subscribeOn(Schedulers.io())
     }
 
@@ -32,7 +31,7 @@ class PetsRepoImpl @Inject constructor(
     }
 
     private fun savePets(pets: Pets) = petsLocalDataSource.savePets(pets)
-        .andThen(Single.just(pets))
+        .andThen(Observable.just(pets))
 
     private fun fetchRemotePets(page: Int) = getAuthToken()
         .flatMap { petsRemoteDataSource.getAnimals(it, page) }
@@ -42,9 +41,8 @@ class PetsRepoImpl @Inject constructor(
         }
 
     private fun getAuthToken(): Single<String> {
-        val accessToken = authLocalDataStore.accessToken
-        val expireTime = authLocalDataStore.tokenExpireTime
-        Log.d("SAM", "getAuthToken(): accessToken = $accessToken, \nexpireTime = $expireTime")
+        val accessToken = authLocalDataSource.getToken()
+        val expireTime = authLocalDataSource.getExpireTime()
         val accessTokenSingle = if (accessToken.isNullOrEmpty() || isTokenExpired(expireTime)) {
             refreshAuthToken()
         } else {
@@ -56,12 +54,11 @@ class PetsRepoImpl @Inject constructor(
     private fun isTokenExpired(expireTime: Long) = System.currentTimeMillis() >= expireTime
 
     private fun refreshAuthToken(): Single<String> {
-        return petsRemoteDataSource.getAuthToken(apiKeysLocalStore.getClientId(), apiKeysLocalStore.getClientSecret())
+        return petsRemoteDataSource.getAuthToken(apiKeysLocalSource.getClientId(), apiKeysLocalSource.getClientSecret())
             .map {
-                Log.d("SAM", "getAuthToken(): accessToken = ${it.tokenType}, \nexpireTime = ${it.accessToken}")
                 val newAccessToken = "${it.tokenType} ${it.accessToken}"
-                authLocalDataStore.accessToken = newAccessToken
-                authLocalDataStore.tokenExpireTime = System.currentTimeMillis().plus(TimeUnit.SECONDS.toMillis(it.expiresIn))
+                authLocalDataSource.setToken(newAccessToken)
+                authLocalDataSource.setExpireTime(System.currentTimeMillis().plus(TimeUnit.SECONDS.toMillis(it.expiresIn)))
                 newAccessToken
             }
     }

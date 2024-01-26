@@ -60,7 +60,6 @@ dependencies {
     implementation(Libs.AndroidX.SwipeRefreshLayout.swipeRefreshLayout)
     implementation(Libs.AndroidX.SavedState.savedState)
 
-    testImplementation(Libs.JUnit.junit)
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)
 

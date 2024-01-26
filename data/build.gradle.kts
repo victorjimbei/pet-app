@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -42,6 +44,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+
+        testLogging {
+            events(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+        }
+    }
 }
 
 dependencies {
@@ -58,8 +68,12 @@ dependencies {
     implementation(Libs.AndroidX.Room.room)
     implementation(Libs.AndroidX.Room.roomRx)
     ksp(Libs.AndroidX.Room.roomCompiler)
+    implementation(Libs.RX.rxAndroid)
 
-    testImplementation(Libs.JUnit.junit)
+    testImplementation(Libs.Junit.junitApi)
+    testImplementation(Libs.Junit.junitEngine)
+    testImplementation(Libs.Junit.junitParams)
+    testImplementation(Libs.Mockk.mockk)
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)
 }

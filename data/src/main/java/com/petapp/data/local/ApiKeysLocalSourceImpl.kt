@@ -2,7 +2,7 @@ package com.petapp.data.local
 
 import javax.inject.Inject
 
-class ApiKeysLocalStore @Inject constructor() {
+class ApiKeysLocalSourceImpl @Inject constructor() : ApiKeysLocalSource {
 
     init {
         try {
@@ -12,6 +12,6 @@ class ApiKeysLocalStore @Inject constructor() {
         }
     }
 
-    external fun getClientId(): String
-    external fun getClientSecret(): String
+    external override fun getClientId(): String
+    external override fun getClientSecret(): String
 }
