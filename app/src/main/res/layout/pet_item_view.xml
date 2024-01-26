@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -40,7 +41,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:petImageUrl="@{petUi.imageUrl}"
-                app:placeHolder="@{R.drawable.ic_pets_24}" />
+                app:placeHolder="@{R.drawable.cats_and_dogs}"
+                tools:src="@drawable/cats_and_dogs" />
 
             <TextView
                 android:id="@+id/pet_name"
@@ -55,7 +57,8 @@
                 android:textAppearance="?attr/textAppearanceListItem"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/pet_image"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Chartreaus Cat" />
 
             <TextView
                 android:layout_width="0dp"
@@ -69,7 +72,8 @@
                 android:textAppearance="?attr/textAppearanceListItemSecondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/pet_image"
-                app:layout_constraintTop_toBottomOf="@+id/pet_name" />
+                app:layout_constraintTop_toBottomOf="@+id/pet_name"
+                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

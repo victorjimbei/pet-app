@@ -25,6 +25,27 @@ object Libs {
             private const val version = "1.1.0"
             const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:$version"
         }
+
+        object Room {
+            private const val version = "2.6.1"
+            const val room = "androidx.room:room-runtime:$version"
+            const val roomCompiler = "androidx.room:room-compiler:$version"
+            const val roomRx = "androidx.room:room-rxjava3:$version"
+        }
+
+        object Navigation {
+            private const val version = "2.7.6"
+            const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
+        }
+        object Security {
+            private const val version = "1.1.0-alpha06"
+            const val crypto = "androidx.security:security-crypto-ktx:$version"
+        }
+
+        object SavedState {
+            private const val version = "2.7.0"
+            const val savedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$version"
+        }
     }
 
     object Material {
@@ -48,24 +69,7 @@ object Libs {
     object Glide {
         private const val version = "4.12.0"
         const val glide = "com.github.bumptech.glide:glide:$version"
-    }
-
-    object Room {
-        private const val version = "2.6.1"
-        const val room = "androidx.room:room-runtime:$version"
-        const val roomCompiler = "androidx.room:room-compiler:$version"
-        const val roomRx = "androidx.room:room-rxjava3:$version"
-    }
-
-    object Navigation {
-        private const val version = "2.7.6"
-        const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
-    }
-
-    object LiveData {
-        private const val version = "2.7.0"
-        const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
-        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+        const val glideOkHttp = "com.github.bumptech.glide:okhttp3-integration:${version}@aar"
     }
 
     object Hilt {
@@ -78,12 +82,6 @@ object Libs {
         const val rxJava3 = "io.reactivex.rxjava3:rxjava:3.1.8"
         const val rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.2"
         const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:3.0.1"
-
-    }
-
-    object Security {
-        private const val version = "1.1.0-alpha06"
-        const val crypto = "androidx.security:security-crypto-ktx:$version"
     }
 
     object Flipper {

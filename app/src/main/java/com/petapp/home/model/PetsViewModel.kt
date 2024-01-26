@@ -1,6 +1,7 @@
 package com.petapp.home.model
 
 import android.app.Application
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import com.petapp.R
@@ -16,16 +17,17 @@ import javax.inject.Inject
 
 class PetsViewModel @Inject constructor(val app: Application, val getPetsUseCase: GetPetsUseCase) : AndroidViewModel(app), OnPetClickListener {
 
+    private val TAG = PetsViewModel::class.java.simpleName
     private val disposables = CompositeDisposable()
     val uiState = NonNullLiveData<PetsUiState>(PetsUiState.LoadingPetsUiState(true, emptyList(), "", View.VISIBLE))
-    val navigateToDetailsScreen = SingleLiveEvent<Void>()
+    val navigateToDetailsScreen = SingleLiveEvent<Int>()
 
     init {
         getPetsData()
     }
 
     override fun onPetClicked(petUi: PetUi) {
-        // TODO: Implement navigation to details screen
+        navigateToDetailsScreen.value = petUi.id
     }
 
     fun onSwipeToRefresh() {
@@ -49,6 +51,7 @@ class PetsViewModel @Inject constructor(val app: Application, val getPetsUseCase
                     )
                 },
                 {
+                    Log.w(TAG, "Failed to load pets: ${it.stackTraceToString()}", it)
                     uiState.value = PetsUiState.PetsErrorUiState(
                         pets = uiState.value.pets,
                         errorMessage = app.getString(R.string.empty_message)

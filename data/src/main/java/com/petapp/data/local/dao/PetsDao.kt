@@ -7,6 +7,7 @@ import androidx.room.Query
 import com.petapp.data.local.model.PetEntity
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 
 @Dao
 interface PetsDao {
@@ -19,4 +20,7 @@ interface PetsDao {
 
     @Query("SELECT * FROM ${PetEntity.TABLE_NAME}")
     fun getAllPetsObservable(): Observable<List<PetEntity>>
+
+    @Query("SELECT * FROM ${PetEntity.TABLE_NAME} WHERE id = :id")
+    fun getPet(id: Int): Single<PetEntity>
 }

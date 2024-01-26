@@ -3,6 +3,7 @@ package com.petapp.home.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.petapp.R
 import com.petapp.databinding.FragmentPetsBinding
 import com.petapp.home.model.PetsViewModel
@@ -21,5 +22,12 @@ class PetsFragment : Fragment(R.layout.fragment_pets) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = petsViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        initObservers()
+    }
+
+    private fun initObservers() {
+        petsViewModel.navigateToDetailsScreen.observe(viewLifecycleOwner) {
+            findNavController().navigate(PetsFragmentDirections.toPetDetailsFragment(it))
+        }
     }
 }

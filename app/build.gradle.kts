@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -50,11 +51,14 @@ dependencies {
     implementation(Libs.Hilt.hilt)
     kapt(Libs.Hilt.hiltCompiler)
     implementation(Libs.AndroidX.ViewBinding.viewBinding)
-    implementation(Libs.Navigation.navigationFragment)
+    implementation(Libs.AndroidX.Navigation.navigationFragment)
     implementation(Libs.RX.rxAndroid)
     implementation(Libs.RX.rxKotlin)
     implementation(Libs.Glide.glide)
+    implementation(Libs.Glide.glideOkHttp)
+    implementation(Libs.OkHttp.okHttp)
     implementation(Libs.AndroidX.SwipeRefreshLayout.swipeRefreshLayout)
+    implementation(Libs.AndroidX.SavedState.savedState)
 
     testImplementation(Libs.JUnit.junit)
     androidTestImplementation(Libs.JUnitExt.junitExt)

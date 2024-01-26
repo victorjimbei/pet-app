@@ -1,17 +1,24 @@
 package com.petapp.domain.di
 
+import com.petapp.domain.GetPetUseCase
 import com.petapp.domain.GetPetsUseCase
+import com.petapp.domain.pets.GetPetUseCaseImpl
 import com.petapp.domain.pets.GetPetsUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class PetsDomainBindingsModule {
     @Binds
-    abstract fun bindPetsUseCase(
-        petsUseCaseImpl: GetPetsUseCaseImpl
+    abstract fun bindGetPetsUseCase(
+        getPetsUseCaseImpl: GetPetsUseCaseImpl
     ): GetPetsUseCase
+
+    @Binds
+    abstract fun bindGetPetUseCase(
+        getPetUseCaseImpl: GetPetUseCaseImpl
+    ): GetPetUseCase
 }

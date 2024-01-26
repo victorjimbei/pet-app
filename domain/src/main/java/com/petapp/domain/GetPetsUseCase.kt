@@ -1,8 +1,8 @@
 package com.petapp.domain
 
 import com.petapp.domain.pets.model.Pets
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Observable
 
 interface GetPetsUseCase {
-    fun getPets(): Single<Pets>
+    fun getPets(): Observable<Pets>
 }
