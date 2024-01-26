@@ -69,7 +69,6 @@ dependencies {
     implementation(Libs.AndroidX.Room.roomRx)
     ksp(Libs.AndroidX.Room.roomCompiler)
     implementation(Libs.RX.rxAndroid)
-
     testImplementation(Libs.Junit.junitApi)
     testImplementation(Libs.Junit.junitEngine)
     testImplementation(Libs.Junit.junitParams)

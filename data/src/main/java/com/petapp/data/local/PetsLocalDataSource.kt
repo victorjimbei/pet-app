@@ -15,9 +15,6 @@ private const val FIRST_PAGE = 1
 
 class PetsLocalDataSource @Inject constructor(val petsDao: PetsDao) {
 
-    // TODO: Consider use cases:
-    //  1. if user refreshes the initial page
-    //  2. if user loads next page
     fun savePets(pets: Pets): Completable {
         return removeOutdatedCache(pets)
             .andThen(Observable.fromIterable(pets.pets))

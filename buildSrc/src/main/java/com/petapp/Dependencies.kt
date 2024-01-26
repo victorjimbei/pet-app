@@ -47,6 +47,11 @@ object Libs {
             private const val version = "2.7.0"
             const val savedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$version"
         }
+
+        object SplashScreen {
+            private const val version = "1.0.0"
+            const val splashScreen = "androidx.core:core-splashscreen:$version"
+        }
     }
 
     object Material {

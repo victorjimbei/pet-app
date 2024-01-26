@@ -59,6 +59,7 @@ dependencies {
     implementation(Libs.OkHttp.okHttp)
     implementation(Libs.AndroidX.SwipeRefreshLayout.swipeRefreshLayout)
     implementation(Libs.AndroidX.SavedState.savedState)
+    implementation(Libs.AndroidX.SplashScreen.splashScreen)
 
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)
