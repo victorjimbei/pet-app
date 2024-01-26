@@ -22,7 +22,6 @@ class PetDetailsViewModel @Inject constructor(val getPetUseCase: GetPetUseCase, 
     private var disposable: Disposable? = null
 
     val petDetailsUiState = MutableLiveData<PetDetailsUiState>()
-    val navigateBack = SingleLiveEvent<Void>()
     val showErrorToast = SingleLiveEvent<Void>()
 
     init {
@@ -36,10 +35,6 @@ class PetDetailsViewModel @Inject constructor(val getPetUseCase: GetPetUseCase, 
                     showErrorToast.call()
                 }
             ).let { disposable = it }
-    }
-
-    fun onBackClicked() {
-        navigateBack.call()
     }
 
     override fun onCleared() {

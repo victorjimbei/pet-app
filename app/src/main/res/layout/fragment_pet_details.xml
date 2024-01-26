@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.petapp.R" />
+
         <import type="android.view.View" />
 
         <variable
@@ -29,20 +31,20 @@
                 android:layout_height="220dp"
                 android:contentDescription="@string/content_description_pets_main_image"
                 android:scaleType="centerCrop"
-                app:petImageUrl="@{viewModel.petDetailsUiState.imageUrl}"
-                app:placeHolder="@{R.drawable.cats_and_dogs}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:petImageUrl="@{viewModel.petDetailsUiState.imageUrl}"
+                app:placeHolder="@{R.drawable.cats_and_dogs}"
                 tools:src="@drawable/cats_and_dogs" />
 
             <ImageView
+                android:id="@+id/iv_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
                 android:contentDescription="@string/content_description_back"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:onClick="@{() -> viewModel.onBackClicked()}"
                 android:src="@drawable/ic_back_with_circle_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -22,12 +22,14 @@ class PetDetailsFragment : Fragment(R.layout.fragment_pet_details) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         initObservers()
+        initClickListeners()
+    }
+
+    private fun initClickListeners() {
+        binding.ivBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun initObservers() {
-        viewModel.navigateBack.observe(viewLifecycleOwner) {
-            findNavController().navigateUp()
-        }
         viewModel.showErrorToast.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), R.string.failed_to_load_pet_details, Toast.LENGTH_LONG).show()
             findNavController().navigateUp()
