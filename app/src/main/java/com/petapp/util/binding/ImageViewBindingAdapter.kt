@@ -10,7 +10,7 @@ object ImageViewBindingAdapter {
 
     @JvmStatic
     @BindingAdapter(value = ["petImageUrl", "placeHolder"])
-    fun setCookModeIcon(imageView: ImageView, imageUrl: String?, @DrawableRes placeHolder: Int) {
+    fun setPetImage(imageView: ImageView, imageUrl: String?, @DrawableRes placeHolder: Int) {
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(imageView.context)
                 .load(imageUrl)
