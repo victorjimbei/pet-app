@@ -17,9 +17,7 @@ class PetsLocalDataSource @Inject constructor(val petsDao: PetsDao) {
 
     fun savePets(pets: Pets): Completable {
         return removeOutdatedCache(pets)
-            .andThen(Observable.fromIterable(pets.pets))
-            .map(PetToPetEntityMapper())
-            .flatMapCompletable { petsDao.setPet(it) }
+            .andThen(petsDao.insertAll(PetToPetEntityMapper().invoke(pets.pets)))
             .subscribeOn(Schedulers.io())
     }
 
@@ -40,7 +38,7 @@ class PetsLocalDataSource @Inject constructor(val petsDao: PetsDao) {
 
     fun getAllPets(): Observable<Pets> {
         val mapper = PetEntityToPetMapper()
-        return petsDao.getAllPetsObservable()
+        return petsDao.getAllPets()
             .map { it.map { mapper.invoke(it) } }
             .map { Pets(pets = it, pagination = null) }
             .subscribeOn(Schedulers.io())

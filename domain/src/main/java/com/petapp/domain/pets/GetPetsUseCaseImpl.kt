@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class GetPetsUseCaseImpl @Inject constructor(val petsRepo: PetsRepo) : GetPetsUseCase {
-    override fun getPets(page: Int): Observable<Pets> {
+    override fun getPets(page: Int): Single<Pets> {
         return petsRepo.getPets(page)
     }
 }

@@ -6,6 +6,6 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
 interface PetsRepo {
-    fun getPets(page: Int): Observable<Pets>
+    fun getPets(page: Int): Single<Pets>
     fun getPet(petId: Int): Single<Pet>
 }

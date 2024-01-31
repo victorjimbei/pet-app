@@ -31,6 +31,7 @@ object Libs {
             const val room = "androidx.room:room-runtime:$version"
             const val roomCompiler = "androidx.room:room-compiler:$version"
             const val roomRx = "androidx.room:room-rxjava3:$version"
+            const val roomPaging = "androidx.room:room-paging:$version"
         }
 
         object Navigation {
@@ -51,6 +52,12 @@ object Libs {
         object SplashScreen {
             private const val version = "1.0.0"
             const val splashScreen = "androidx.core:core-splashscreen:$version"
+        }
+
+        object Pagination {
+            private const val version = "3.1.1"
+            val pagination = "androidx.paging:paging-runtime:$version"
+            val paginationRx = "androidx.paging:paging-rxjava3:$version"
         }
     }
 

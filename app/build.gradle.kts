@@ -60,6 +60,8 @@ dependencies {
     implementation(Libs.AndroidX.SwipeRefreshLayout.swipeRefreshLayout)
     implementation(Libs.AndroidX.SavedState.savedState)
     implementation(Libs.AndroidX.SplashScreen.splashScreen)
+    implementation(Libs.AndroidX.Pagination.pagination)
+    implementation(Libs.AndroidX.Pagination.paginationRx)
 
     androidTestImplementation(Libs.JUnitExt.junitExt)
     androidTestImplementation(Libs.Espresso.espresso)

@@ -19,10 +19,10 @@ class PetsRepoImpl @Inject constructor(
     val apiKeysLocalSource: ApiKeysLocalSource,
     val authLocalDataSource: PetsAuthLocalDataSource,
 ) : PetsRepo {
-    override fun getPets(page: Int): Observable<Pets> {
+    override fun getPets(page: Int): Single<Pets> {
         return fetchRemotePets(page)
-            .flatMapObservable { savePets(it) }
-            .mergeWith(petsLocalDataSource.getAllPets())
+            .flatMap { savePets(it) }
+//            .mergeWith(petsLocalDataSource.getAllPets())
             .subscribeOn(Schedulers.io())
     }
 
@@ -31,7 +31,7 @@ class PetsRepoImpl @Inject constructor(
     }
 
     private fun savePets(pets: Pets) = petsLocalDataSource.savePets(pets)
-        .andThen(Observable.just(pets))
+        .andThen(Single.just(pets))
 
     private fun fetchRemotePets(page: Int) = getAuthToken()
         .flatMap { petsRemoteDataSource.getAnimals(it, page) }

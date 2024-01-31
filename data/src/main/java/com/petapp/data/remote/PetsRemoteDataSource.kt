@@ -8,6 +8,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 private const val CLIENT_CREDENTIALS = "client_credentials"
+const val INITIAL_PAGE = 1
+const val PAGE_SIZE = 20
 
 class PetsRemoteDataSource @Inject constructor(val petsApi: PetsApi) {
 
@@ -19,8 +21,8 @@ class PetsRemoteDataSource @Inject constructor(val petsApi: PetsApi) {
         ).subscribeOn(Schedulers.io())
     }
 
-    fun getAnimals(token: String, page: Int): Single<Pets> {
-        return petsApi.fetchAnimals(token, page)
+    fun getAnimals(token: String, page: Int = INITIAL_PAGE, limit: Int = PAGE_SIZE): Single<Pets> {
+        return petsApi.fetchAnimals(token, page, limit)
             .map(AnimalDtoToPetMapper())
             .subscribeOn(Schedulers.io())
     }

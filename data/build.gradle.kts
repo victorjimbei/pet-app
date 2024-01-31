@@ -67,8 +67,12 @@ dependencies {
     implementation(Libs.AndroidX.Security.crypto)
     implementation(Libs.AndroidX.Room.room)
     implementation(Libs.AndroidX.Room.roomRx)
+    implementation(Libs.AndroidX.Room.roomPaging)
     ksp(Libs.AndroidX.Room.roomCompiler)
     implementation(Libs.RX.rxAndroid)
+    implementation(Libs.AndroidX.Pagination.pagination)
+    implementation(Libs.AndroidX.Pagination.paginationRx)
+
     testImplementation(Libs.Junit.junitApi)
     testImplementation(Libs.Junit.junitEngine)
     testImplementation(Libs.Junit.junitParams)

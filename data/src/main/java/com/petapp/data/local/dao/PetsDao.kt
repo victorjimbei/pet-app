@@ -13,13 +13,13 @@ import io.reactivex.rxjava3.core.Single
 interface PetsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun setPet(pet: PetEntity): Completable
+    fun insertAll(pets: List<PetEntity>): Completable
 
     @Query("DELETE FROM ${PetEntity.TABLE_NAME}")
     fun deleteAllPets(): Completable
 
-    @Query("SELECT * FROM ${PetEntity.TABLE_NAME}")
-    fun getAllPetsObservable(): Observable<List<PetEntity>>
+    @Query("SELECT * FROM ${PetEntity.TABLE_NAME} ORDER BY id ASC")
+    fun getAllPets(): Observable<List<PetEntity>>
 
     @Query("SELECT * FROM ${PetEntity.TABLE_NAME} WHERE id = :id")
     fun getPet(id: Int): Single<PetEntity>

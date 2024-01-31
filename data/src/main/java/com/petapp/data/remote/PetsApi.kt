@@ -24,7 +24,8 @@ interface PetsApi {
     @GET("v2/animals")
     fun fetchAnimals(
         @Header("Authorization") token: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("limit") limit: Int,
     ): Single<AnimalsDto>
 
     @GET("pet.get")
